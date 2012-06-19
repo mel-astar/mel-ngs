@@ -1,8 +1,8 @@
 #run bwa alignment, sort with sam tools and use picard to remove PCR duplicates.
 
 #ALIGNMENT
-#bwa aln -q 30 -t 7 /MEL/shared/GenomeFasta/hg19/hg19.fa  s_5_6_1_sequence.txt >  SRR309293_1.sai  
-#bwa aln -q 30 -t 7 /MEL/shared/GenomeFasta/hg19/hg19.fa  s_5_6_2_sequence.txt  >  SRR309293_2.sai  
+bwa aln -q 30 -t 7 /MEL/shared/GenomeFasta/hg19/hg19.fa  s_5_6_1_sequence.txt >  SRR309293_1.sai  
+bwa aln -q 30 -t 7 /MEL/shared/GenomeFasta/hg19/hg19.fa  s_5_6_2_sequence.txt  >  SRR309293_2.sai  
 
 #TRANSFORM OUTPUT
 #bwa sampe /MEL/shared/GenomeFasta/hg19/hg19.fa SRR309293_1.sai SRR309293_2.sai s_5_6_1_sequence.txt s_5_6_2_sequence.txt |gzip > SRR309293_bwa.sam.gz 
