@@ -1,0 +1,21 @@
+#this file looks for input file locations for setting up chip-seq pipeline
+
+#output directory (provide full path)
+OUTPUTDIR=/MEL/hoonss/data/JLoh_Chip-SEQ/mel-chipseq
+
+#INPUT fastq, the control treatment
+#INPUTFASTQ=/MEL/shared/GA_Data/120615_HWUSI_EAS1712_00060_FC/bcl2fastq/Project_Jonathan/Sample_Jloh-INPUT/Jloh-INPUT_NoIndex_L004_R1.fastq
+INPUTFASTQ=/MEL/hoonss/data/JLoh_Chip-SEQ/mel-chipseq/t/INPUT.fastq
+
+#TREATMENT fastq
+#TREATMENTFASTQ=/MEL/shared/GA_Data/120615_HWUSI_EAS1712_00060_FC/bcl2fastq/Project_Jonathan/Sample_Jloh-KURE3/Jloh-KURE3_NoIndex_L005_R1.fastq
+TREATMENTFASTQ=/MEL/hoonss/data/JLoh_Chip-SEQ/mel-chipseq/t/TREAT.fastq
+
+#The output root name
+PROJECTNAME=TEST
+
+#genome (mm9 or hg18) etc
+GENOME=mm9
+
+
+

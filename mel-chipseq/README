@@ -1,0 +1,7 @@
+PIPELINE:
+
+0. Configure to setup directories
+1. BOWTIE align to genome
+2. MACS Peaks to find peaks
+3. HOMER to identify motifs and AnnotatePeaks
+
