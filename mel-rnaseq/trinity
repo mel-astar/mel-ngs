@@ -1,4 +1,4 @@
-Running Trinity de-novo assembly pacakage in serial way... Useful in running it on Cluster with batch submisson process
+Running Trinity de-novo assembly pacakage in serial way... Useful in running it on Cluster with job submisson 
 
 Step 1) Pre-Processing
 ----------------------------
