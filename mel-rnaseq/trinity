@@ -1,0 +1,9 @@
+Running Trinity de-novo assembly pacakage in serial way... Useful in running it on Cluster with batch submisson process
+
+Step 1) Pre-Processing
+----------------------------
+a) Converting input reads fastq to fasta files and concatenating them
+   (If paired-end, reads from reverse strand are reverse complimented)
+   
+   CMD:
+   
