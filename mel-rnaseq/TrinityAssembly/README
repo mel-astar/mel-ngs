@@ -7,9 +7,11 @@ Trinity contains three major steps:
       2) Chrysalis.
       3) Butterfly.
     
-It also implement some pre-inchworm steps to cruch the input files for inchowrm saving some time.
+It also implement some pre-inchworm steps to cruch the input files for inchworm saving some time.
 
-0) pre_inchworm.pl : For pre inchworm steps like converting fastq into fasta and concatenating them.
-1) inchworm.pl     : inchowrm step.
-2) chrysalis.pl    : Chrysalis step.
-
+1) pre_inchworm.pl : For pre inchworm steps like converting fastq into fasta and concatenating them.
+2) inchworm.pl     : inchowrm step.
+3) chrysalis.pl    : Chrysalis step.
+   chrysalis alone contains three serial steps, in which first two steps are ran serially and last one can be run in parralel.
+   These three steps can also run individually, else can use above wrapper script (chrysalis.pl), which runs first two steps together.
+   
