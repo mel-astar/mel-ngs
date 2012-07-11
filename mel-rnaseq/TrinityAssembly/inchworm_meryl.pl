@@ -9,13 +9,13 @@ my $usage = <<_EOUSAGE_;
 #########################################################################################
 # This program creats the lsf file and submit it to the server using the given parameters
 #                       
-#  --reads     Concatenated Reads fasta file (Just the filename, No need of directory path)    
-#  --NOMERYL   Flag not to use merly (Def:Yes)
+#  --reads   Reads fasta file (Just the filename, No need of directory path)    
+#  --NOMERYL Flag not to use merly (Def:Yes)
 # Optional 
-#  --job_name           (Def:inchworm_run)
-#  --work_dir           directory where reads fasta is present (Def: ./)
-#  --min_kmer_coverage  (Def: 1)
-#  --invoke_function    use only this without any other to  invoke the program parameters
+#  --job_name       (Def:inchworm_run)
+#  --work_dir         directory where reads fasta is present (Def: ./)
+# --min_kmer_coverage  (Def 1) 
+#  --invoke_function use only this without any other to  invoke the program parameters
 ########################################################################################
 
 _EOUSAGE_
@@ -53,7 +53,7 @@ unless($min_kmer_coverage)
    $min_kmer_coverage=1;
 }
 
-my $inch='/scratch/scei/sceivam/softwares/trinityrnaseq_r2011-11-26/Inchworm/bin/inchworm';
+my $inch='/scratch/scei/sceivam/softwares/trinityrnaseq_r2011-10-29/Inchworm/bin/inchworm';
 
 if($invoke){
   print "\n$inch\n";
@@ -74,10 +74,10 @@ elsif(!$invoke){
            print OUT "#BSUB -o $job_name.run.out\n";
            print OUT "#BSUB -e $job_name.run.err\n";
            print OUT "\ndate\n";
-           print OUT "$inch --reads $work_dir/$both_fa --coverage_outfile $work_dir/kmer2iwContig.coverage --run_inchworm --monitor 1 2>$work_dir/monitor.out  >$work_dir/inchworm.K25L48.fa.tmp && mv $work_dir/inchworm.K25L48.fa.tmp $work_dir/inchworm.K25L48.fa\n";
-           print OUT "touch inchworm.fininshed\n";
+           print OUT "$inch --reads $work_dir/$both_fa --coverage_outfile $work_dir/kmer2iwContig.coverage --run_inchworm --monitor 1 2>$work_dir/monitor.out  >$work_dir/inchworm.K25L48.fa  \n";
            print OUT "echo END!\n";
      close OUT;
+     #system("bsub<$work_dir/$job_name.lsf");
   }
  else{
   open(OUT,">$work_dir/$job_name".'.lsf');
@@ -93,12 +93,14 @@ elsif(!$invoke){
            print OUT "#BSUB -e $job_name.run.err\n";
            print OUT "\ndate\n";
            print OUT "perl /scratch/scei/sceivam/Trinity_Scripts/kmeryl.pl --reads $both_fa --work_dir $work_dir\n";
-           print OUT "$inch --kmers $work_dir/meryl.kmers.min${min_kmer_coverage}.fa --coverage_outfile $work_dir/kmer2iwContig.coverage --run_inchworm --monitor 1 2>$work_dir/monitor.out  >$work_dir/inchworm.K25L48.fa.tmp && mv $work_dir/inchworm.K25L48.fa.tmp $work_dir/inchworm.K25L48.fa \n";
-           print OUT "touch inchworm.finished\n";
+           print OUT "$inch --kmers $work_dir/meryl.kmers.min${min_kmer_coverage}.fa --coverage_outfile $work_dir/kmer2iwContig.coverage --run_inchworm --monitor 1 2>$work_dir/monitor.out  >$work_dir/inchworm.K25L48.fa  \n";
            print OUT "echo END!\n";
      close OUT;
+     #system("bsub<$work_dir/$job_name.lsf");
+ 
+
+
   }
-print "Lsf file is created at $work_dir\nHave a look and submit it\n";
   
 }
   

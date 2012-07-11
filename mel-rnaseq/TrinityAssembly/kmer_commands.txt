@@ -1,0 +1,70 @@
+my $cmd = "sed  \'s/^\>.*/\>/\' $reads > ${reads}.headless";
+        &process_cmd($cmd) unless (-s "${reads}.headless");
+
+
+        unless (-s "meryl_kmer_db.mcdat") {
+            ## build k-mer db using meryl
+            $cmd = "$MERYL_DIR/meryl -v -B -m 25 -s ${reads}.headless -o meryl_kmer_db";
+            if ($strand_specific_flag) {
+                $cmd .= " -f"; # forward strand k-mers only
+            }
+            else {
+                $cmd .= " -C"; # canonical (one or other of the potential DS k-mer)
+            }
+            &process_cmd($cmd);
+        }
+
+        $meryl_kmer_file = "meryl.kmers.min${min_kmer_cov}.fa";
+
+        ## output k-mers
+        $cmd = "$MERYL_DIR/meryl -Dt -n $min_kmer_cov -s meryl_kmer_db > $meryl_kmer_file";
+        &process_cmd($cmd) unless (-s $meryl_kmer_file);
+
+        unlink("${reads}.headless", "${reads}.headless.fastaidx", "meryl_kmer_db.mcdat", "meryl_kmer_db.mcidx");
+
+        $inchworm_cmd = "$INCHWORM_DIR/bin/inchworm --kmers $meryl_kmer_file --run_inchworm -K 25 -L 48 --monitor 1 ";
+    }
+    else {
+        $inchworm_cmd = "$INCHWORM_DIR/bin/inchworm --reads $reads --run_inchworm -K 25 -L 48 --monitor 1 ";
+        if ($min_kmer_cov > 1) {
+            $inchworm_cmd .= " --min_kmer_coverage $min_kmer_cov ";
+        }
+    }
+
+
+    unless ($strand_specific_flag) {
+                $inchworm_cmd .= " --DS ";
+        }
+
+ $inchworm_cmd .= " 2>monitor.out > $inchworm_outfile";
+
+
+
+    if (-s $inchworm_outfile) {
+        print STDERR "####### WARNING:  Inchworm results: $inchworm_outfile already exist.  Reusing them rather than rerunning inchworm.#######\n";
+    }
+    else {
+
+        eval {
+            &process_cmd($inchworm_cmd);;
+        };
+
+        if ($@) {
+
+            print STDERR "$@\n";
+            print "** The inchworm process failed.  Below is the tail end of the log file:\n\n\n    $output_directory/monitor.out \n\n";
+            system("tail -n10 monitor.out");
+            print STDERR "\n\nIf it indicates bad_alloc(), then Inchworm ran out of memory.  You'll need to either reduce the size of your data set or run Trinity on a server with more memory available.\n\n";
+            exit(1);
+        }
+    }
+
+
+    if ($USE_MERYL) {
+        unlink($meryl_kmer_file); # no longer needed once inchworm is complete.
+    }
+
+        return;
+
+}
+

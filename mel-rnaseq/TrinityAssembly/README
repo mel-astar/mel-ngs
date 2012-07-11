@@ -1,5 +1,4 @@
-This includes information about scripts used to run individual steps of trinity wrapper on a cluster machine
-using lsf job submission.
+This includes information about scripts used to run individual steps of trinity wrapper on a cluster machine using lsf job submission.
 
 Trinity version used: trinityrnaseq_r2011-11-26.
 
@@ -13,3 +12,4 @@ It also implement some pre-inchworm steps to cruch the input files for inchowrm 
 0) pre_inchworm.pl : For pre inchworm steps like converting fastq into fasta and concatenating them.
 1) inchworm.pl     : inchowrm step.
 2) chrysalis.pl    : Chrysalis step.
+
