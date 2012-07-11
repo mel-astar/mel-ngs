@@ -9,6 +9,7 @@ my $usage= <<_EOUSAGE_;
 # --DS if Double-stranded (default: SS, Strand specific)
 # --min_kmer_coverage min count for K-mers to be assembled by Inchworm (default: 1)
 # --work_dir : dir where reads fasta file is located
+# --trin_dir : dir path where trinity installed
 ################################################################
 
 
@@ -19,11 +20,11 @@ my $SS;
 my $DS;
 my $min_kmer_coverage;
 my $work_dir;
+my $trin_dir;
+&GetOptions( 'reads=s'=>\$reads,'work_dir=s'=>\$work_dir, 'trin_dir=s'=>\$trin_dir,'DS'=>\$DS,'min_kmer_coverage=i'=>\$min_kmer_coverage,);
 
-&GetOptions( 'reads=s'=>\$reads,'work_dir=s'=>\$work_dir, 'DS'=>\$DS,'min_kmer_coverage=i'=>\$min_kmer_coverage,);
 
-
-unless($reads)
+unless($reads && $trin_dir)
 {
  die $usage;
 }
@@ -38,7 +39,7 @@ unless($min_kmer_coverage)
 }
 
 
-my $MERYL_DIR='/scratch/scei/sceivam/softwares/trinityrnaseq_r2011-11-26/trinity-plugins/kmer/meryl/meryl';
+my $MERYL_DIR=$trin_dir.'/trinity-plugins/kmer/meryl/meryl';
 
 my $cmd = "sed  \'s/^\>.*/\>/\' $work_dir/$reads > $work_dir/${reads}.headless";
     system("$cmd") unless (-s "$work_dir/${reads}.headless");	
