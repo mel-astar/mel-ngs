@@ -1,1 +1,34 @@
+Base Calling from Illumina GA IIx Sequencer Using Casava1.8.2:
+---------------------------------------------------------------
+
+Casava is installed on local Linux server at /usr/local/share/bioinfo/CASAVA_v1.8.2/
+Programs are located in /usr/local/share/bioinfo/CASAVA_v1.8.2/Build/bin/
+
+BcltoFastq Conversion :
+-----------------------
+
+New Batch perl script "configureBcltofastq.pl" is included in Casava 1.8, which directly converts bcl (image) files 
+to Fastq format
+
+Parameters for cofigureBcltofastq.pl :
+
+/usr/local/share/bionifo/CASAVA_v1.8.2/Build/bin/configureBcltofastq.pl
+	
+     --input-dir		: Path to Basecall directory
+     --intensities-dir	 	: Path to Intensities directory (defaults to parent of basecall directory)
+     --positions-dir		: Path to directory containing positions files (default depends on RTA version)
+     --output-dir        	: Path to Output folder
+     --sample-sheet        	: Path to Samplesheet.csv (defaults to BasecallDir/SampleSheet.csv)
+     --tiles regex[[,regex]...] : Comma-separated list of regular expressions to select only a subset of the tiles available in the flow-cell.
+  				   - to select all the tiles ending with "5" in all lanes: --tiles [0-9][0-9][0-9]5
+ 				   - to select tile 2 in lane 1 and all the tiles in the other lanes: --tiles s_1_0002,s_[2-8]
+
+
+
+BcltoQseq Conversion :
+----------------------
+
+This Wrapper script is used to convert Bcl files to intermediate Qseq format, which can further converted into Fastq files
+
+
 
