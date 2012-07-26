@@ -1,1 +1,32 @@
-This gives information on existing alignment tools:
+This gives information on existing alignment tools and downstream pipelines:
+
+
+
+Bowtie Aligner:
+---------------
+
+Bowtie: Aligning Reads to Genome
+
+
+Tophat-Cufflinks Pipeline:
+--------------------------
+
+Tophat     :  For Reads Alignment(using bowtie), and Splicing analysis
+Cufflinks  :  For Transcript abundance calculation
+
+Steps: 
+ 
+  1) Run Tophat: Aligning reads to genome/trascriptome.
+		 Junction Reads
+  
+    run_tophat.sh 
+
+  2) Cufflinks:
+
+
+Rsem Pipeline:
+----------------
+
+Rsem: for calculating Transcript abundance and Differentially expressed Genes/Transcritps
+
+
