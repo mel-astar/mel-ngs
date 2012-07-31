@@ -9,7 +9,7 @@ To counter check the integrity of these:
 
 1. Decompress them Using gunzip.
 2. If paired-end, check for same no of records in both fastq files of each lane.
-3. Run, whether each fastq record is in correct format.
+3. Chek whether each fastq record is in correct format.
 4. compress them back using tar, may be according to lanes/samples. 
 5. Backup them at acrc server. 
 
