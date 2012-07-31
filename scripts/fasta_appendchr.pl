@@ -1,6 +1,5 @@
 use strict;
 use warnings;
-
 use Bio::SeqIO;
 
 die("\n\tThis script is for appending \"chr\" after > in fasta file\n\tMake sure to isntall BioPerl\n\t \
