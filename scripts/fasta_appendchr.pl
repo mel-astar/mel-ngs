@@ -1,3 +1,7 @@
+# This script is for appending "chr" in fasta header after ">"
+# Make sure to isntall BioPerl 
+
+
 use strict;
 use warnings;
 use Bio::SeqIO;
