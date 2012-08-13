@@ -11,9 +11,9 @@ New Batch perl script "configureBcltofastq.pl" is included in Casava 1.8, which 
 
 Steps to Run BcltoFastq :
 
-1) Navigate to the Basecall Directory.
+1) Navigate to the Basecall Directory:
 
-2) Run below command , using parameters accordingly.
+2) Run below command , using parameters accordingly:
 
    /usr/local/share/bionifo/CASAVA_v1.8.2/Build/bin/configureBcltoFastq.pl
 	
@@ -26,9 +26,22 @@ Steps to Run BcltoFastq :
   				   - to select all the tiles ending with "5" in all lanes: --tiles [0-9][0-9][0-9]5
  				   - to select tile 2 in lane 1 and all the tiles in the other lanes: --tiles s_1_0002,s_[2-8]
 
-      Example CMD: /usr/local/share/bioinfo/Build/bin/configureBcltoFastq.pl --input-dir ./path/to/basecalldir/ --output-dir ./path/to/output 
+      Example CMD: /usr/local/share/bioinfo/Build/bin/configureBcltoFastq.pl --input-dir /path/to/basecalldir/ --output-dir /path/to/output --sample-sheet /path/to/samplesheet.csv
 
-3) Run Make file.
+3) Preparing Samplesheet.csv:
+
+   This file directs the software how to assign reads to samples, and samples to projects. If the run is demultiplxed, this file specifies for each index in every lane which sample   and which project it belongs to 
+
+   Create a comma seperated file named "Samplesheet.csv" in basecall directory with following columns:
+  
+   FCID,Lane,SampleID,SampleRef,Index,Description,Control,Recipe,Operator,SampleProject
+
+   If not sure of some columns, leave them blank or fill them with NA. For sample file look into Samplesheet.csv.
+
+   Create this file even if the run is not multiplexed as it helps to output results according to project names.
+
+ 
+4) Run Make file:
    
     This Wrapper script creates the output directory, and writes some Make files into it.
     After running this wrapper script, navigate to the output folder and type, 
