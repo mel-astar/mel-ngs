@@ -6,7 +6,7 @@ Trinity is a novel method for the efficient and robust de novo reconstruction of
 More information on its implentation can be found at "http://trinityrnaseq.sourceforge.net/";
 
 
-Considering, memory and waiting time for job sumission on cluster (using lsf), It is advised to run Trinity in a sequenctial step-wise manner rather as a wrapper, which takes require huge memory and time. (Sometimes, you may end up runnnig it for 3-4 weeks if you are dealing with more no of reads!!!). Step-wise manner implementation is useful to have a check on resources, before implementation of next task. 
+Considering, memory and waiting time for job sumission on cluster (using lsf), It is advised to run Trinity in a sequenctial step-wise manner rather as a wrapper, which require huge memory and time. (Sometimes, you may end up runnnig it for 3-4 weeks if you are dealing with more no of reads!!!). Step-wise manner implementation is useful to have a check on resources, before implementation of next task. 
 
 The programs included in this directory are used to create jobs submission files for individual steps of Trinity with all the lsf job rquirements.
 
