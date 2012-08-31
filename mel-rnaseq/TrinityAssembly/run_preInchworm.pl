@@ -56,7 +56,6 @@ _EOUSAGE_
  	"right=s" =>\$right,
  	"single=s" =>\$single,
  	"SS_lib_type=s" =>\$SS_lib_type,
- 	"output_dir=s" =>\$out_dir,
  	"trin_dir=s" =>\$trin_dir,
  	"CPU=i"=>\$CPU,
  	"preInch_output_dir=s"=>\$out_dir,
