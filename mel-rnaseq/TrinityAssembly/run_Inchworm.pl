@@ -16,22 +16,22 @@ my $usage = <<_EOUSAGE_;
 ##########################################################################################
 #   Required:
 #
-#     --input <string>  		: input file name ("Usually it is ./both.fa")
-#     --trin_dir <string>		: path to where trinity is installed
+#     --input <string>  	: input file name ("Usually it is ./both.fa")
+#     --trin_dir <string>	: path to where trinity is installed
 #
 #     --JM <int>                : Memory needed to run Jelly fish in GB (like 50G)
 #
 #   Optional:
 #
-#    --SS-lib_type <string>		: if reads are strand-specific.
+#    --SS-lib_type <string>	: if reads are strand-specific.
 #				  	  
 #    --work_dir <string>        : working directory path (Def: "./")
 #   
 #							  
 #    Bsub Options:
 #
-#   --CPU <int>				: number of CPUS to use (Def: 15)
-#   --memory <int> 			: Memory required (Def:6000MB)
+#   --CPU <int>			: number of CPUS to use (Def: 15)
+#   --memory <int> 		: Memory required (Def:6000MB)
 #   --single_span <flag>	: Use this if you need to submit job on one cluster (Def:No)
 #   --run_time <int>		: No of hours you are intending to run this job (Def:24)
 #   --job_name <string>		: job name for this job (Def: Inch)
@@ -51,7 +51,7 @@ _EOUSAGE_
  	"trin_dir=s" =>\$trin_dir,
  	"CPU=i"=>\$CPU,
  	"work_dir=s"=>\$work_dir,
-    "JM=s"=>\$JM,
+        "JM=s"=>\$JM,
  	"memory=i"=>\$MEM,
  	"single_span"=>\$SPAN,
  	"run_time=i"=>\$W,
@@ -110,7 +110,7 @@ $command .= " $input";
 
 print STDOUT "Full Command to be Run is :\n\n\t$command\n\n";
 
-open(OUT,">$lsffile") || die $!;
+open(OUT,">$work_dir/$lsffile") || die $!;
  print "Generating lsf file \n";
  print OUT "#!/bin/bash\n";
  print OUT "#BSUB -n $CPU\n";
