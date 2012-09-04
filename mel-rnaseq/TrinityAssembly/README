@@ -36,7 +36,7 @@ Trinity is implemented as 5 steps:
  4) QuantifyGraph Step:
  ----------------------
 
-    As this step can be run in atmost parralel way, as inputs and outputs are completely different. we make use of ParaFly program, included in Trinity for submitting in parallel.
+    As this step can be run in atmost parralel way, as inputs and outputs for each command are completely unique to each. we make use of ParaFly program,which is included in Trinity for submitting in parallel.
    Initially, quantifygraph_commands file is splitted into small chunk files with definate no of commands. Also a job submmision file is created along with it, with the same basename (QG for QuantifyGraph).
   
    Program: split_Commands.pl (run without any options for help on parameters).
