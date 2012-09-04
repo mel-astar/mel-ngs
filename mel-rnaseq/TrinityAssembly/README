@@ -37,15 +37,16 @@ Trinity is implemented as 5 steps:
  ----------------------
 
     As this step can be run in atmost parralel way, as inputs and outputs are completely different. we make use of ParaFly program, included in Trinity for submitting in parallel.
-   Initially, quantifygraph_commands file is splitted into no of files with definate no of command in it.
-
-   Program : split_Commands.pl is used for splitting qunatifygraph_commands file into no of chunk files. As the same programs are also used for butterfly, the basename is indicated as QG (indicating QuantifyGraph).
+   Initially, quantifygraph_commands file is splitted into small chunk files with definate no of commands. Also a job submmision file is created along with it, with the same basename (QG for QuantifyGraph).
   
-   Later Program : submit_Commands.pl is used to create job specific files for all chunk files respectively.
+   Program: split_Commands.pl (run without any options for help on parameters).
+
+  
+   Later Program : submit_Commands.pl is used to submit job specific files for all chunk files respectively.
 
  5) Butterfly Step:
  ------------------
 
-   Similar to QuantifyGraph Step, butterfly_commands are chunked and submitted in parallel using same programs and basename ad BF (indicating butterfly).
+   Similar to QuantifyGraph Step, butterfly_commands are chunked and submitted in parallel using same programs and basename as BF (indicating butterfly).
  
 

@@ -7,12 +7,13 @@ use Cwd;
 my $usage = <<_EOUSAGE_;
 ##########################################################################################
 #
-# --wrkdir        			: directory where the quantifygraphs commands 
-#							   are generated(Def: "./") (usually chrysalis folder)
-# --c              			: Name of quantify coomands file
+# --wrkdir        		: directory where the quantifygraphs commands 
+#				   are generated(Def: "./") (usually chrysalis folder)
+# --c              		: Name of quantify coomands file
 # --cutoff          		: No of commands you want to dispatch to one lsf file (Def: 200)
-# --filebasename   		   	: basename of split files to be created (basename_1,basename_2....)
-# --trin_dir				: path where trinity is installed
+# --filebasename   	   	: basename of split files to be created (basename_1,basename_2....)
+#				  (QG for QuantifyGraph and BF for Butterfly).
+# --trin_dir			: path where trinity is installed
 #
 #    Bsub Options:
 #
@@ -68,7 +69,7 @@ my $start=0;
 for(my $i=1; $i<=$b;$i++)
  {
      open(OUT, ">$wrkdir/$basename"."_$i")||die $!;
-     open(JOB, ">$wrkdir/$basename"."_$i"."_job.lsf")||die $!;
+     open(JOB, ">$wrkdir/$basename"."_$i"."_lsfjob.lsf")||die $!;
      print OUT join("\n",@commands[$start..$start+($cutoff-1)]),"\n";
      close OUT;
      print STDOUT "Done $wrkdir/$basename"."_$i\n";
@@ -89,7 +90,7 @@ for(my $i=1; $i<=$b;$i++)
 if(($tot%$batches)!=0)
  { 
      open(OUT, ">$wrkdir/$basename"."_last");
-     open(JOB, ">$wrkdir/$basename"."_last_job.lsf")||die $!;
+     open(JOB, ">$wrkdir/$basename"."_last_lsfjob.lsf")||die $!;
      print OUT join("\n",@commands[$start..($tot-1)]),"\n";
      close OUT;
      print STDOUT  "Done $wrkdir/$basename"."_last\n";
