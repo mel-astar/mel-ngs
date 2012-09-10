@@ -1,3 +1,8 @@
+# Assuming You are in Project_* directory present within output directory of
+# bcl to fastq conversion.
+
+#! /bin/bash
+
 for s in $(ls -d Sample*)
 do
  echo "Working for Sample $s\n"
