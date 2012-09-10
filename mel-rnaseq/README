@@ -1,0 +1,12 @@
+Steps for RNASeq Processing:
+----------------------------
+
+1) Quality Analysis [Fastx-toolkit/FastQC].
+
+2) Denovo Assembly (optional) [TrinityAssembly].
+
+3) Reads Alignment and Stats [ReadsAlignment]. 
+
+4) Differntial Expression Analysis [DiffExpression].
+
+
