@@ -1,9 +1,13 @@
 Steps for RNASeq Processing:
 ----------------------------
 
+<<<<<<< HEAD
 0) Casava Base Calling [../IlluminaBaseCalling].
 
 1) Quality Analysis [Fastx-toolkit/FastQC].
+=======
+1) Quality Analysis [PreProcessing].
+>>>>>>> 9a3a295d8c53c3416213d2f30e9f7d6ac00545d8
 
 2) Denovo Assembly (optional) [TrinityAssembly].
 
