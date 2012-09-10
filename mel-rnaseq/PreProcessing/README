@@ -1,0 +1,19 @@
+PreProcessing RNA Seq Reads:
+----------------------------
+
+As from Casava v1.8, it reports both the pass filtered and unfiltered reads in fastq files.
+we use illumina_fastq_filter program developed by CSHL.
+
+see illumina_filter.sh, a wrapper for running this on all samples.
+
+
+Quality Statistics:
+-------------------
+
+FastQC command line version is used for quality analaysis summary.
+
+see run_fastqc.sh
+
+
+
+
