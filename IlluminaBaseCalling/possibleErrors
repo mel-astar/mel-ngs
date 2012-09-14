@@ -1,0 +1,7 @@
+Possible Erorrs you can come across while running CASAVA are:
+
+1) Run Number:
+
+   Usually after configuring bcl to fastq using  configureBcltofastq.pl, this inturn depends on demultiplexBcls program for converting bcl to fastq.
+   if the run number is predicted as 0000 (or all zeros), this cause demultiplexBcls to exit. so change the run number to any number in Makefile.
+   This run number is reflected in Reads name.
