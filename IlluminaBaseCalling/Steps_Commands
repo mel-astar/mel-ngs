@@ -17,7 +17,7 @@
    Files To be backed up:
  
     Folder ./bcl2fastq/Project_FC
-    Folder ./bcl2fastq/Basecall_Stats_FC
+    Files  ./bcl2fastq/Basecall_Stats_FC/BustardSummary.* (.xml and .xsl)
     File   /Run/Data/Intensities/Status.htm 
     Folder /Run/Data/Intensities/Status_Files
 
