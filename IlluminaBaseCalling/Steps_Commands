@@ -1,0 +1,24 @@
+1) BaseCalling (bclToFastq using Casava 1.8) , Navigate to Basecall directory 
+
+   /usr/local/share/bioinfo/Casava_v1.8/Build/bin/configureBclToFastq.pl --input-dir ./ --output-dir ./bcl2fastq 
+
+   Go to bcl2fastq dir, then type
+   
+   nohup make -j 8 &
+
+2) Run Fastqc on Fastq files
+
+   Go to bcl2fastqc/Projec_FC folder and run bash script "run_fastqc.sh" provided here.
+
+   Note the fastq files to be in compressed mode and this script works for a normal run without any demultiplexing.
+
+3) BACKUP to MEL Server 
+  
+   Files To be backed up:
+ 
+    Folder ./bcl2fastq/Project_FC
+    Folder ./bcl2fastq/Basecall_Stats_FC
+    File   /Run/Data/Intensities/Status.htm 
+    Folder /Run/Data/Intensities/Status_Files
+
+ 

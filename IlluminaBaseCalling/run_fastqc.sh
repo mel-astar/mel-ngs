@@ -3,5 +3,12 @@
 # This fastqc can be directly used on bcltofastq output directory,
 # as this can summarize all the files of same sample as one.
 
-/path/to/fastqc -o ./ -f fastq --casava -t 4 --extract *.gz;
+for i in $(ls -d ./Sample_lane*)
+do
+ echo $i
+ cd $i
+ echo fastqc \-o ./ \-f fastq \-\-casava \-t 4 \-\-extract *.gz;
+ fastqc -o ./ -f fastq --casava -t 4 --extract *.gz;
+ cd ../
+done
 
