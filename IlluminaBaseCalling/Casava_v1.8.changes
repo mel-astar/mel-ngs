@@ -1,0 +1,22 @@
+Casava_v1.8:
+
+By default in Casava_v1.8, reads that do not pass filetered are not included in final fastq compressed files unless you run configureBclToFastq.pl with "--with-failed-reads" option.
+
+If you have failed reads included in fastq files follow below steps for filtering them:
+ 
+
+1) FastQ files contain all reads, both the reads that passed filtering, as well as the read that did not pass filtering.
+
+2) For extracting the filtered reads, a linux one-liner can be used
+ 	for fastq in *fastq.gz;
+          do
+	     zcat $fastq|grep -A 4 '^@.*[^:]*:N:[^:]*:' > filtered/$fastq;
+          done
+	
+	Also can use fastq_illumina_filter from (http://cancan.cshl.edu/labmembers/gordon/fastq_illumina_filter/) for thorough filtering
+
+3)FastQ quality scores are transformed from integer to character so that a string can represent all of the quality scores within a read.
+    They employed an ASCII offsety of 33, which is Sanger FASTQ format. 
+    For example a Q30 base that was previously represented by character "^" will now represented by character "?". So BQ +33 = ASCII Value shown in base quality string for each fastq record.
+
+

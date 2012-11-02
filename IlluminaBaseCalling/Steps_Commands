@@ -1,6 +1,6 @@
 1) BaseCalling (bclToFastq using Casava 1.8) , Navigate to Basecall directory 
 
-   /usr/local/share/bioinfo/Casava_v1.8/Build/bin/configureBclToFastq.pl --input-dir ./ --output-dir ./bcl2fastq 
+   /usr/local/share/bioinfo/CASAVA_v1.8.2/Build/bin/configureBclToFastq.pl --input-dir ./ --output-dir ./bcl2fastq 
 
    Go to bcl2fastq dir, then type
    
