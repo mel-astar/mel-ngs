@@ -3,7 +3,7 @@ my $CONFIG_FILE = $ARGV[0] || "Config.txt";
 my $conf = Config::General->new(-ConfigFile=>$CONFIG_FILE);
 my %config = $conf->getall;
 my $ONLYTREAT = $config{'ONLYTREAT'};
-my $INPUT = $config{'INPUTFASTQ'} if($ONLYTREAT<1);
+my $INPUT = $config{'INPUTFASTQ'};
 my $TREAT = $config{'TREATMENTFASTQ'};
 my $PROJ = $config{'PROJECTNAME'};
 my $OUTDIR = $config{'OUTPUTDIR'};
@@ -36,20 +36,18 @@ mkdir "$OUTDIR/$PROJ"."_dir"."/motif";
 #run bowtie
 print STDERR "mel-chipseq: Running bowtie\n\n";
 chdir  $BOWTIE_DIR;
-my $BOWTIE_IN_OUTFILE = $PROJ."_INPUT" if($ONLYTREAT<1);
+my $BOWTIE_IN_OUTFILE = $PROJ."_INPUT";
 my $BOWTIE_TREAT_OUTFILE = $PROJ."_TREAT";
-my $bowtie_IN_cmd = "(bowtie $BOWTIE_PARAMS -S $GENOME $INPUT |samtools view -ut -bS - | samtools sort - $BOWTIE_IN_OUTFILE) 2> $OUTDIR_PROJ/log.txt" if($ONLYTREAT<1);
+my $bowtie_IN_cmd = "(bowtie $BOWTIE_PARAMS -S $GENOME $INPUT |samtools view -ut -bS - | samtools sort - $BOWTIE_IN_OUTFILE) 2> $OUTDIR_PROJ/log.txt";
 my $bowtie_TREAT_cmd = "(bowtie $BOWTIE_PARAMS -S $GENOME $TREAT |samtools view -ut -bS - | samtools sort - $BOWTIE_TREAT_OUTFILE) 2>> $OUTDIR_PROJ/log.txt";
 
 if($ONLYTREAT<1){
-  system("$bowtie_IN_cmd") unless $INPUTBAM; #do need to run input alignment if INPUTBAM is provided.
+  print STDERR "mel-chipseq: "."$bowtie_IN_cmd\n";
+  system("$bowtie_IN_cmd") unless $INPUTBAM; 
   $INPUTBAM = $INPUTBAM || "$BOWTIE_DIR/$BOWTIE_IN_OUTFILE.bam";
 }
-# || die ("problems running $bowtie_IN_cmd");
-system("$bowtie_TREAT_cmd");
-# || die ("problems running $bowtie_TREAT_cmd");
-print STDERR "mel-chipseq: "."$bowtie_IN_cmd\n" unless($ONLYTREAT>0);
 print STDERR "mel-chipseq: "."$bowtie_TREAT_cmd\n";
+system("$bowtie_TREAT_cmd") || die ("problems running $bowtie_TREAT_cmd");
 
 #run MACS
 print STDERR "mel-chipseq: Running MACS\n\n";
@@ -61,8 +59,7 @@ else{
  my $macs_cmd = "macs14 $MACS_PARAMS -t $BOWTIE_DIR/$BOWTIE_TREAT_OUTFILE.bam -f BAM -g $MACS_GENOME -n $PROJ 2>> $OUTDIR_PROJ/log.txt";
 } 
 print STDERR "mel-chipseq: ".$macs_cmd."\n";
-system($macs_cmd);
- # || die ("problems running $macs_cmd");
+system($macs_cmd) || die ("problems running $macs_cmd");
 
 #run annotated peaks
 chdir "$ANNOTATEPEAKS_DIR";
@@ -77,8 +74,7 @@ print STDERR "mel-chipseq: Running findMotifsGenome.pl\n\n";
 
 my $motif_cmd = "findMotifsGenome.pl $MACS_DIR/$PROJ"."_peaks.bed $GENOME $MOTIF_DIR -mask 2>> $OUTDIR_PROJ/log.txt";
 print STDERR "mel-chipseq: ".$motif_cmd."\n";
-system($motif_cmd) ;
-#|| die("problems running $motif_cmd");
+system($motif_cmd) || die("problems running $motif_cmd");
 
 
 print STDERR "mel-chipseq: Analysis Completed\n";
