@@ -38,8 +38,8 @@ print STDERR "mel-chipseq: Running bowtie\n\n";
 chdir  $BOWTIE_DIR;
 my $BOWTIE_IN_OUTFILE = $PROJ."_INPUT";
 my $BOWTIE_TREAT_OUTFILE = $PROJ."_TREAT";
-my $bowtie_IN_cmd = "(bowtie $BOWTIE_PARAMS -S $GENOME $INPUT |samtools view -ut -bS - | samtools sort - $BOWTIE_IN_OUTFILE) 2> $OUTDIR_PROJ/log.txt";
-my $bowtie_TREAT_cmd = "(bowtie $BOWTIE_PARAMS -S $GENOME $TREAT |samtools view -ut -bS - | samtools sort - $BOWTIE_TREAT_OUTFILE) 2>> $OUTDIR_PROJ/log.txt";
+my $bowtie_IN_cmd = "(/MEL/bin/bowtie-0.12.7/bowtie $BOWTIE_PARAMS -S $GENOME $INPUT |samtools view -ut -bS - | samtools sort - $BOWTIE_IN_OUTFILE) 2> $OUTDIR_PROJ/log.txt";
+my $bowtie_TREAT_cmd = "(/MEL/bin/bowtie-0.12.7/bowtie $BOWTIE_PARAMS -S $GENOME $TREAT |samtools view -ut -bS - | samtools sort - $BOWTIE_TREAT_OUTFILE) 2>> $OUTDIR_PROJ/log.txt";
 
 if($ONLYTREAT<1){
   print STDERR "mel-chipseq: "."$bowtie_IN_cmd\n";
@@ -48,7 +48,7 @@ if($ONLYTREAT<1){
   $INPUTBAM = $INPUTBAM || "$BOWTIE_DIR/$BOWTIE_IN_OUTFILE.bam";
 }
 print STDERR "mel-chipseq: "."$bowtie_TREAT_cmd\n";
-system("$bowtie_TREAT_cmd") || die ("problems running $bowtie_TREAT_cmd");
+system("$bowtie_TREAT_cmd");#|| die ("problems running $bowtie_TREAT_cmd");
 #run MACS
 print STDERR "mel-chipseq: Running MACS\n\n";
 chdir "$MACS_DIR";
@@ -60,7 +60,7 @@ else{
  $macs_cmd = "macs14 $MACS_PARAMS -t $BOWTIE_DIR/$BOWTIE_TREAT_OUTFILE.bam -f BAM -g $MACS_GENOME -n $PROJ 2>> $OUTDIR_PROJ/log.txt";
 } 
 print STDERR "mel-chipseq: ".$macs_cmd."\n";
-system($macs_cmd) || die ("problems running $macs_cmd");
+system($macs_cmd);# || die ("problems running $macs_cmd");
 #run annotated peaks
 chdir "$ANNOTATEPEAKS_DIR";
 print STDERR "mel-chipseq: Running annotatePeaks.pl\n\n";
@@ -74,7 +74,7 @@ print STDERR "mel-chipseq: Running findMotifsGenome.pl\n\n";
 
 my $motif_cmd = "findMotifsGenome.pl $MACS_DIR/$PROJ"."_peaks.bed $GENOME $MOTIF_DIR -mask 2>> $OUTDIR_PROJ/log.txt";
 print STDERR "mel-chipseq: ".$motif_cmd."\n";
-system($motif_cmd) || die("problems running $motif_cmd");
+system($motif_cmd);#|| die("problems running $motif_cmd");
 
 print STDERR "mel-chipseq: Analysis Completed\n";
 
