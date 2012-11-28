@@ -3,6 +3,9 @@
 #output directory (provide full path)
 OUTPUTDIR=/MEL/hoonss/data/JLoh_Chip-SEQ/mel-chipseq
 
+# Run MACS with treatment file only (1 if true, 0 if false)
+ONLYTREAT=0
+
 #INPUT fastq, the control treatment
 #INPUTFASTQ=/MEL/shared/GA_Data/120615_HWUSI_EAS1712_00060_FC/bcl2fastq/Project_Jonathan/Sample_Jloh-INPUT/Jloh-INPUT_NoIndex_L004_R1.fastq
 INPUTFASTQ=/MEL/hoonss/data/JLoh_Chip-SEQ/mel-chipseq/t/INPUT.fastq
