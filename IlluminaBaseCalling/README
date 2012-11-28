@@ -1,6 +1,9 @@
 Base Calling from Illumina GA IIx Sequencer Using Casava1.8.2:
 ---------------------------------------------------------------
 
+See Step_Commands file for commands only 
+
+
 Casava is installed on local Linux server at /usr/local/share/bioinfo/CASAVA_v1.8.2/
 Programs are located in /usr/local/share/bioinfo/CASAVA_v1.8.2/Build/bin/
 
@@ -47,6 +50,14 @@ Steps to Run BcltoFastq :
     After running this wrapper script, navigate to the output folder and type, 
 
     nohup make -j n &         : n is the no of processors.
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+USING CASAVA 1.7 or Older:
+--------------------------
+
+bcl --> qseq --> fastq.
 
 
 BcltoQseq Conversion :

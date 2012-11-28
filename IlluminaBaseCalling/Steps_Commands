@@ -4,15 +4,20 @@
 
    Go to bcl2fastq dir, then type
    
-   nohup make -j 8 &
+   nohup make -j 5 & 
 
-2) Run Fastqc on Fastq files
+2) Check the integrity of fastq compressed files using gunzip -t filename.fastq.gz
+   
+    Go to bcl2fastq/Project_FC folder and run below command
+    find ./ -name "*fastq.gz" -exec gunzip -t {} \;
 
-   Go to bcl2fastqc/Projec_FC folder and run bash script "run_fastqc.sh" provided here.
+3) Run Fastqc on Fastq files
+
+   Go to bcl2fastq/Projec_FC folder and run bash script "run_fastqc.sh" provided here.
 
    Note the fastq files to be in compressed mode and this script works for a normal run without any demultiplexing.
 
-3) BACKUP to MEL Server 
+4) BACKUP to MEL Server 
   
    Files To be backed up:
  
