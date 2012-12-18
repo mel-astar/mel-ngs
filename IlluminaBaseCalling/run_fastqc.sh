@@ -3,12 +3,12 @@
 # This fastqc can be directly used on bcltofastq output directory,
 # as this can summarize all the files of same sample as one.
 
-for i in $(ls -d ./Sample_lane*)
+for i in $(ls -d ./Sample_*)
 do
  echo $i
  cd $i
- echo fastqc \-o ./ \-f fastq \-\-casava \-t 4 \-\-extract *.gz;
- fastqc -o ./ -f fastq --casava -t 4 --extract *.gz;
+ echo /usr/local/share/bioinfo/FastQC/fastqc \-o ./ \-f fastq \-\-nogroup \-\-casava \-t 4 \-\-extract *.gz;
+ /usr/loacl/share/bioinfo/FastQC/fastqc -o ./ -f fastq --casava -t 4 --extract --nogroup *.gz;
  cd ../
 done
 
