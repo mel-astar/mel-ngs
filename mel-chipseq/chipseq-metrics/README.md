@@ -40,4 +40,7 @@ Step6) Calculate FRiP (Fraction of Reads in peaks)
 
 All these metrics are tabulate with following coloumns
 
-SampleName #NoOfReads #NoOfUniquelyMappedReads NRF NSC RSC FRiP IDR 
+SampleName|#NoOfReads|#NoOfUniquelyMappedReads|NRF|NSC|RSC|FRiP|IDR
+----------|----------|------------------------|---|---|---|----|---
+|
+ 
