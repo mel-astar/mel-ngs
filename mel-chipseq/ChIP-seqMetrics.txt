@@ -1,0 +1,20 @@
+Evaluating ChIP-seq data:
+------------------------------------
+
+1) Number uniquely mapped reads 10M
+ 	In sam file, tag NH:i:1 provides the information.
+        If ran bowtie with -m 1 option, use "bamtools filter -isMapped" for report only mapped reads.
+
+2) Non redundant fraction(NRF) 0.8
+	NRF = (No of positions in genome that uniquely mapped reads map to) / (Total no of uniquely mapped reads * Read length)
+	It is similar to a recently published redundancy metric (Heinz et al 2010).
+
+        NRF = (No of Uniqurly mapped reads that share different mapping location)/Total No of Uniquely mapped reads
+       
+3) Number of peaks called by peak finding algorithms (MACS)
+
+4) Cross correlation (NSC) (RSC) from phantompeakqualtools package
+
+5) Fraction of reads in peak (FrIP) (1%)
+
+6) IDR from phantompeakqualtools package, if you have replicated in your experiment.
