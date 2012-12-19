@@ -1,4 +1,4 @@
-After Running run_chipseq.pl
+After Running `run_chipseq.pl`
 
 
 Step1) Get Total No of Reads (Using Linux grep -c command or any other utility)
