@@ -10,7 +10,7 @@ Step2) Calculate No of Uniquely Mapped reads:
 
 Step3) Calculate NRF (Non Redundant Fraction)
  
-        a) Convet bam files to bed using bamtobed utility from bedtools 
+        a) Convert bam files to bed using bamtobed utility from bedtools 
 
 	      sh run_bamtobed.sh
 
@@ -20,7 +20,7 @@ Step3) Calculate NRF (Non Redundant Fraction)
 
 Step4) Report No of peaks identified by macs14.
 
-       To get peaks for control samples, run macs14 usign control as treatment and then report no of peaks
+       To get peaks for control samples alone, run macs14 using control as treatment and then report no of peaks
 
 Step5) Calculate NSC and RSC strand cross correlation
 
@@ -28,17 +28,17 @@ Step5) Calculate NSC and RSC strand cross correlation
 
 Step6) Calculate FRiP (Fraction of Reads in peaks)
 
-        a) get reads overlapping in peaks (atleast by 20%) using intersectbed from bedtools
+        a) get reads overlapping in peaks (at least by 20%) using intersectbed from bedtools
 
-            sample cmd: intersectBed -a /path/to/Sample_bamtobed.bed -b /path/to/macs/peaks.bed -c -f 0.20  >Output.intersectBed 
-        
-        b) summup reads mapped to peaks from Output.intersectBed output
+           sample cmd: intersectBed -a /path/to/Sample_bamtobed.bed -b /path/to/macs/peaks.bed -c -f 0.20  >Output.intersectBed
+                     
+        b) sum up reads mapped to peaks from Output.intersectBed output
  
             perl getCnt.pl 
 
 
 
-All these metrics are tabulate with following coloumns
+All these metrics are tabulate with following columns
 
 SampleName|#NoOfReads|#NoOfUniquelyMappedReads|NRF|NSC|RSC|FRiP|IDR
 ----------|----------|------------------------|---|---|---|----|---
