@@ -15,6 +15,7 @@
 use warnings;
 use strict;
 
+if($#ARGV<2){ die("\n\tperl $0 file1.fq file2.fq file1_out.fq file2_out.fq\n\tNot enogh Parameters \n");}
 open FILE1,"<","$ARGV[0]" or die("Couldn't find the file  $ARGV[0] \n");
 open FILE2,"<","$ARGV[1]" or die("couldn't find the file $ARGV[1] \n");
 open OUT1,">", "$ARGV[2]" ||die $!;
@@ -24,7 +25,6 @@ my @read1;
 my @read2;
 my $clear=0;
 
-if($#ARGV<2){ die("Not enogh Parameters \n");}
 
 my $line1= <FILE1>;
 my $line2=<FILE2>;
