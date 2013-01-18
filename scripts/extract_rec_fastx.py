@@ -17,12 +17,17 @@ if __name__ == "__main__" :
 	parser.print_help()
 	sys.exit(0)
    args = parser.parse_args()
+   if args.inp is None:
+	print "please provide the input file (-file)"
+        parser.print_help()
+	sys.exit(0)
+
    out_handle = open(args.out,"w")
    no=1
-   if (fq=="False"):
-	filefor = "fasta"
+   if args.fq :
+	filefor = "fastq"
    else:
- 	filefor = "fastq"
+ 	filefor = "fasta"
 
    for rec in SeqIO.parse(args.inp,filefor):
        if no<=args.number :
