@@ -11,4 +11,11 @@ Step 2) convert bedGraph to bigWig (UCSC executables)
 
        if no chrom.sizes, run fetchChromSizes (UCSC exec) to get sizes.
 
+# Converting bam files into Wiggle files
+-----------------------------------------
+
+Using igvtools sample command:
+
+	igvtools count -e 100 -w 25 input.bam output.cov.tdf,output.cov.wig  hg19
  
+      Input bam file should ne indexed.
