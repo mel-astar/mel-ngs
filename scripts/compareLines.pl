@@ -1,7 +1,9 @@
 #! /usr/bin/perl -w
 use strict;
 use warnings;
-die "\nThis prog is for comparing two files line by line\n\tProvide two files for comparison\n\tperl $0 file1 file2\n\n" if($#ARGV<1);
+die "\nThis prog is for comparing two files line by line\n\t \
+       Provide two files for comparison\n\tperl $0 file1 file2\n\n \
+       Output includes three columns: 1st (Uniq in file1), 2nd (Uniq in file2), 3rd (Comm in both)\n\n" if($#ARGV<1);
 my %ab; my %a; my %b;
 open(IN1,$ARGV[0]);
 while(<IN1>){
