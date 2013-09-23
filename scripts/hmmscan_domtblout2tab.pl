@@ -20,6 +20,8 @@ open(IN,"$ARGV[0]")||die $!;
 while(<IN>){
  chomp;
  next if($_=~/^#/);
- my @line = split(/\s/,$_);
+ my @line = $_=~/^(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+([\S+|\s+]+)/;
+ #my @line2;
+ #foreach my $l(@line){ push @line2,$l unless($l=~/^\S+$/);}
  print OUT join("\t",@line)."\n";
 }
