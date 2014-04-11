@@ -6,10 +6,8 @@ use Getopt::Long;
 
 my $usage = <<"HELP";
 
-usage  : perl $0 -f/-fq inputfile
-	
-	-f if input is fasta 
-	-fq if input is fastq
+usage  : perl $0 -f/-fq -i inputfile
+		(-f: fasta, -fq: fastq)
 HELP
 
 my $f=''; my $fq='';
@@ -37,7 +35,7 @@ while(my $rec = $inp->next_seq){
  push(@len,$l);
 }
 my @slen = sort {$a<=>$b} @len;
-print STDOUT "\n\tInput fasta file : \"$ARGV[0]\"\n";
+print STDOUT "\n\tInput fasta file : \"$input\"\n";
 print STDOUT "\tTotal fasta records : ".($#len+1)."\n";
 print STDOUT "\tTotal Genome Length of all sequences: $TLEN\n";
 print STDOUT "\tMin sequence length : $slen[0]\n";
