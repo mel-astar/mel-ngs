@@ -9,5 +9,5 @@ my $in = Bio::SeqIO->new(-file=>"$ARGV[0]", -format=>'fastq');
 while(my $rec = $in->next_seq){
 	my $len  = $rec->length;
 	my $name = $rec->id;
-	print "$name\tlen\n";
+	print "$name\t$len\n";
 }

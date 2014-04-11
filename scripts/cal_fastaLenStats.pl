@@ -2,8 +2,33 @@
 use strict;
 use warnings;
 use Bio::SeqIO;
-die("\n\tUsage perl $0 input.fasta\n\n") if($#ARGV<0);
-my $inp = Bio::SeqIO->new(-file=>"$ARGV[0]", -format=>'fasta');
+use Getopt::Long;
+
+my $usage = <<"HELP";
+
+usage  : perl $0 -f/-fq inputfile
+	
+	-f if input is fasta 
+	-fq if input is fastq
+HELP
+
+my $f=''; my $fq='';
+my $input='';
+GetOptions("f"=>\$f, "fq"=>\$fq, "i=s"=>\$input );
+
+unless($f||$fq||$input) { die "$usage\n"; }
+unless($f||$fq){ die "Error: Choose -f/-fq option\n $usage\n\n" ;}
+unless($input){ die "Provide input file \n$usage\n"; }
+
+my $inp;
+if($f){
+	$inp = Bio::SeqIO->new(-file=>"$input", -format=>'fasta');
+}
+elsif($fq){
+	$inp = Bio::SeqIO->new(-file=>"$input", -format=>'fastq');
+}
+
+
 my $TLEN=0;
 my @len;
 while(my $rec = $inp->next_seq){
