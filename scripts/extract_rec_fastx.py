@@ -31,7 +31,7 @@ if __name__ == "__main__" :
  	filefor = "fasta"
 
    tot_seq = SeqIO.to_dict(SeqIO.parse(args.inp,filefor))
-   tot_seqnames = tot_seq.keys(()
+   tot_seqnames = tot_seq.keys()
    range_numbers = range(0, (len(totseqnames)-1))
    rand_num = random.sample(range_numbers,args.no)
    pull_seqnames 
