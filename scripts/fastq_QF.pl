@@ -24,7 +24,7 @@ USAGE:
 	--Qtype 			:  Quality encoding (def: sanger)
 					   sanger (for sanger and Illumina 1.8+ formats)
 					   solexa (for solexa and illumina 1.3+ formats)
-					  
+	--zout				:  Output to be compressed (gzipped) format				  
     
 	NOTE: --casava should not be used along with --fw and --bw options
 
@@ -40,13 +40,15 @@ my $fw;
 my $bw;
 my $Qtype;
 our $ENCODING;
+my $zout;
 
 &GetOptions( 'casava' => \$casava,
 	      'outputbase=s'=>\$outbase,
 	      'minQ=i'=>\$minQ,
 	      'fw=s'=>\$fw,
 	      'bw=s'=>\$bw,
-	      'Qtype=s'=>\$Qtype
+	      'Qtype=s'=>\$Qtype,
+	      'zout'=>\$zout
 	    );
 
 die USAGE."\nERROR: No Input/ Arguments \n\n" unless(($fw && $bw)||$casava);
@@ -62,12 +64,22 @@ switch($Qtype){
   case("solexa") { $ENCODING = 64; }
 }
 
+my ($out_fw, $out_bw);
+if($zout){
+ $out_fw = $outbase."_1_filt.fq.gz";
+ $out_bw = $outbase."_2_filt.fq";
 
-my $out_fw = $outbase."_1_filt.fastq";
-my $out_bw = $outbase."_2_filt.fastq";
+ open OUT1,">", "gzip $out_fw" ||die $!;
+ open OUT2,">", "gzip $out_bw" ||die $!;
+}
+else{
+ $out_fw = $outbase."_1_filt.fq";
+ $out_bw = $outbase."_2_filt.fq";
 
-open OUT1,">", $out_fw ||die $!;
-open OUT2,">",$out_bw ||die $!;
+ open OUT1,">", $out_fw ||die $!;
+ open OUT2,">",$out_bw ||die $!;
+}
+
 
 if($casava){
 
