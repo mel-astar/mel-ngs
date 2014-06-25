@@ -56,10 +56,10 @@ while(<FQ>){
       $number = ord($line[$i]); # get the number represented by the ascii char
       
       # check if it is sanger or illumina/solexa, based on the ASCII image at http://en.wikipedia.org/wiki/FASTQ_format#Encoding
-      if($number > 73){ # if solexa/illumina
-        die "This file is solexa/illumina format\n"; # print result to terminal and die
+      if($number > 74){ # if solexa/illumina
+        die "This file is solexa/illumina 1.3+ format\n"; # print result to terminal and die
       }elsif($number < 59){ # if sanger
-        die "This file is sanger format\n"; # print result to terminal and die
+        die "This file is sanger/Illumina 1.8+ format\n"; # print result to terminal and die
       }
     }
   }
