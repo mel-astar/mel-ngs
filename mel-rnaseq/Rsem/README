@@ -1,0 +1,45 @@
+RSEM RNA-seq Pipeline
+=================================
+
+1) Already built Rsem Genomes
+-----------------------------
+
+hg19_ucsc_fil: hg19 ucsc genome (filtering extra chromosomes).
+
+hg19_ensembl_fil: hg19 Ensemble genome (filtering extra chromosomes).
+
+
+2) Build New Rsem Genomes:
+----------------------------
+
+
+3) Aligning Reads to Genome:
+----------------------------
+
+Script: rsem-align.pl 
+ 
+Edit align.cfg file for setting the parameters
+
+Type perl rsem-align.pl for usage 
+
+
+4) Consolidate Counts (gene/isoforms) into a data matrix
+--------------------------------------------------------
+
+Script: rsem_consolidate.pl
+
+Type perl rsem_consolidate.pl for usage and parameters.
+
+
+
+5) Get Description for Gene/Isoform Ids in Data Matrix output
+---------------------------------------------------------------
+
+script : rsem_getDesc.pl
+
+
+
+6) Differential Gene Expression
+----------------------------------
+
+
