@@ -13,10 +13,8 @@
 
 3) Run Fastqc on Fastq files
 
-   Go to bcl2fastq/Projec_FC folder and run bash script "run_fastqc.sh" provided here.
-
-   Note the fastq files to be in compressed mode and this script works for a normal run without any demultiplexing.
-
+   Go to bcl2fastq folder and run bash script "run_fastqc.sh".
+   
 4) BACKUP to MEL Server 
   
    Files To be backed up:
