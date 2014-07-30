@@ -37,9 +37,7 @@ Type perl rsem_consolidate.pl for usage and parameters.
 
 script : rsem_getDesc.pl
 
+Type perl rsem_getDesc.pl for usage and parameters
 
-
-6) Differential Gene Expression
-----------------------------------
 
 
