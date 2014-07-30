@@ -39,5 +39,5 @@ script : rsem_getDesc.pl
 
 Type perl rsem_getDesc.pl for usage and parameters
 
-
+Output example: tmp_tab_desc.tsv
 
