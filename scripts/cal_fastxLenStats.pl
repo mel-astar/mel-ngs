@@ -35,8 +35,8 @@ while(my $rec = $inp->next_seq){
  push(@len,$l);
 }
 my @slen = sort {$a<=>$b} @len;
-print STDOUT "\n\tInput fasta file : \"$input\"\n";
-print STDOUT "\tTotal fasta records : ".($#len+1)."\n";
-print STDOUT "\tTotal Genome Length of all sequences: $TLEN\n";
+print STDOUT "\n\tInput file : \"$input\"\n";
+print STDOUT "\tTotal fastx records : ".($#len+1)."\n";
+print STDOUT "\tTotal concatenated length of all sequences: $TLEN\n";
 print STDOUT "\tMin sequence length : $slen[0]\n";
 print STDOUT "\tMax sequence length : $slen[-1]\n\n";
