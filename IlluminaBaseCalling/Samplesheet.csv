@@ -4,6 +4,7 @@ FCID,Lane,SampleID,SampleRef,Index,Description,Control,Recipe,Operator,SamplePro
 0045,2,liver,,,,N,,Daniel,Human
 
 
+Delete below section before passing this for configureBclToFastq.pl
 
 Column Descriptions:
 
