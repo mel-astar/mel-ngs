@@ -7,7 +7,7 @@ use lib ("$FindBin::Bin/../../PerlLib");
 use Fasta_reader;
 
 use constant USAGE=><<END;
-\n\tSynopsis: Prints out Gene Trans Length information for Trinity.fasta
+\n\tSynopsis: Prints out Gene Trans Length information for Trinity.fasta and extracts longest transcript for each component
 
 	USAGE:  perl $0 transcripts.fasta\n\n
 	OUTPUT: {transcripts.fasta}.gene2trans.len and {transcripts}_maxTrans.fasta
@@ -19,7 +19,7 @@ $trans_fasta =~ m/^(\S+)\.fasta$/;
 my $fasta_output = $1."_maxTrans.fasta";
 open my $lenstat ,">$length_output" or die "cannot create output file $length_output\n";
 main: {
-    my %COMPLEN; my %COMPTRANS; my %COMPMAX;
+    my %COMPLEN; my %COMPMAX;
     my $fasta_reader = new Fasta_reader($trans_fasta);
     
     while (my $seq_obj = $fasta_reader->next()) {
