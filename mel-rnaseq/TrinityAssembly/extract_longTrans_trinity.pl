@@ -14,7 +14,7 @@ use constant USAGE=><<END;
 END
 
 my $trans_fasta = $ARGV[0] or die USAGE."\n";
-my $length_output = $ARGV[0]."gene2trans.len";
+my $length_output = $ARGV[0].".gene2trans.len";
 $trans_fasta =~ m/^(\S+)\.fasta$/;
 my $fasta_output = $1."_maxTrans.fasta";
 open my $lenstat ,">$length_output" or die "cannot create output file $length_output\n";
@@ -38,27 +38,17 @@ main: {
 	my $len = length($seq);
         print $lenstat join("\t", $gene, $trans, $len) . "\n";
 
-	push @{$COMPTRANS{$gene}{$len}}, $trans;
-
-	if($COMPLEN{$gene}){
-		my $maxlen = $COMPLEN{$gene}->[0];
-		$len = $maxlen if($maxlen > $len);
+	if(!$COMPLEN{$gene} || $COMPLEN{$gene} < $len){
+		$COMPLEN{$gene} = $len;
+		$COMPMAX{$gene} = $trans;
     	}
-	push @{$COMPLEN{$gene}}, $len;
        }
        $fasta_reader->finish();
-
-       # Getting longest transcript
-	foreach my $g(keys %COMPLEN){
-		my @rec = @{$COMPLEN{$g}};
-		my $len = $rec[-1];
-		my @trans_rec = @{$COMPTRANS{$g}{$len}};
-		my $max_trans = $trans_rec[0];
-		$COMPMAX{$max_trans}++;
-	}
-
+       close($lenstat);
+       print STDERR "Writing Longest transcript seq records\n";
+	
 	#Writing out the longest transcript
-	open my $maxtrans, ">$length_output" or die "Cannot create $length_output file!!\n";
+	open my $maxtrans, ">$fasta_output" or die "Cannot create $length_output file!!\n";
 	my $fasta_reader2 = new Fasta_reader($trans_fasta);
 	while(my $seq_obj = $fasta_reader2->next()){
 		my $gene; my $trans;
@@ -71,7 +61,8 @@ main: {
             		$gene = $1;
             		$trans = $acc;
         	}
-		next unless($COMPMAX{$trans});
+		die ("No Long Transcript for $gene\n") if($COMPMAX{$gene});
+		next unless($trans eq $COMPMAX{$gene});
 		my $fasta_entry = $seq_obj->get_FASTA_format();
 		print $maxtrans $fasta_entry;	
 	}	
