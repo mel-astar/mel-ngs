@@ -10,13 +10,13 @@ use constant USAGE=><<END;
 \n\tSynopsis: Prints out Gene Trans Length information for Trinity.fasta and extracts longest transcript for each component
 
 	USAGE:  perl $0 transcripts.fasta\n\n
-	OUTPUT: {transcripts.fasta}.gene2trans.len and {transcripts}_maxTrans.fasta
+	OUTPUT: {transcripts.fasta}.gene2trans.len and {transcripts}_longTrans.fasta
 END
 
 my $trans_fasta = $ARGV[0] or die USAGE."\n";
 my $length_output = $ARGV[0].".gene2trans.len";
 $trans_fasta =~ m/^(\S+)\.fasta$/;
-my $fasta_output = $1."_maxTrans.fasta";
+my $fasta_output = $1."_longTrans.fasta";
 open my $lenstat ,">$length_output" or die "cannot create output file $length_output\n";
 main: {
     my %COMPLEN; my %COMPMAX;
@@ -61,7 +61,7 @@ main: {
             		$gene = $1;
             		$trans = $acc;
         	}
-		die ("No Long Transcript for $gene\n") if($COMPMAX{$gene});
+		die ("No Long Transcript for $gene\n") unless($COMPMAX{$gene});
 		next unless($trans eq $COMPMAX{$gene});
 		my $fasta_entry = $seq_obj->get_FASTA_format();
 		print $maxtrans $fasta_entry;	
